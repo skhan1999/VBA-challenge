@@ -1,5 +1,4 @@
 # VBA-challenge
-
 Sub Stock_market()
 
 'Declare and set worksheet
@@ -36,10 +35,10 @@ Dim Lastrow As Long
 Dim i As Long
 Dim j As Integer
 
-
+'Define Lastrow of worksheet
 Lastrow = ws.Cells(Rows.Count, 1).End(xlUp).Row
 
-
+'Set new variables for prices and percent changes
 Dim open_price As Double
 open_price = 0
 Dim close_price As Double
@@ -51,19 +50,20 @@ price_change_percent = 0
 
 Dim TickerRow As Long: TickerRow = 1
 
-
+'Do loop of current worksheet to Lastrow
 For i = 2 To Lastrow
 
+'Ticker symbol output
 If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
 TickerRow = TickerRow + 1
 Ticker = ws.Cells(i, 1).Value
 ws.Cells(TickerRow, "I").Value = Ticker
 
-'
+'Calculate change in Price
 close_price = ws.Cells(i, 6).Value
 price_change_percent = close_price - open_price
 
-
+'Fixing the open price equal zero problem
 ElseIf open_price <> 0 Then
 price_change_percent = (price_change_percent / open_price) * 100
 
